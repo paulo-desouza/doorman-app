@@ -28,6 +28,7 @@ INSTALLED_APPS += [
     'basic_user.apps.BasicUserConfig',
     'doorman.apps.DoormanConfig',
     'visitor.apps.VisitorConfig',
+    'dashboard.apps.DashboardConfig',
 ]
 
 INSTALLED_APPS += [
@@ -105,3 +106,7 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = "login"
+
+LOGIN_REDIRECT_URL = "index"

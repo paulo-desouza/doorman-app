@@ -3,18 +3,17 @@ from django.contrib import messages
 from django.shortcuts import (
     render, redirect, get_object_or_404
 )
-
 from django.http import HttpResponseNotAllowed
-
+from django.contrib.auth.decorators import login_required
 from visitor.forms import (
     VisitorForm, AuthorizeVisitorForm
 )
 from visitor.models import Visitor
-
-
 from django.utils import timezone
 
 
+
+@login_required
 def register_visitor(request):   # THE REQUEST COMES FROM THE CLICK STRAIGHT INTO HERE DIRECTED FROM URLS.PY
 
     form = VisitorForm
@@ -50,7 +49,7 @@ def register_visitor(request):   # THE REQUEST COMES FROM THE CLICK STRAIGHT INT
 
 
 
-
+@login_required
 def information_visitor(request, id):
 
     visitor = get_object_or_404(
@@ -90,6 +89,8 @@ def information_visitor(request, id):
     return render(request, "information_visitor.html", context)
 
 
+
+@login_required
 def finalize_visit(request, id):
 
     if request.method == "POST":
