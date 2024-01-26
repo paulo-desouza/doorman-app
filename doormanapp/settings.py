@@ -21,6 +21,7 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'basic_user.apps.BasicUserConfig',
+    'doorman.apps.DoormanConfig',
 ]
 
 MIDDLEWARE = [
