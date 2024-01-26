@@ -9,35 +9,35 @@ from django.contrib.auth.models import (
 class BasicUserManager(BaseUserManager):
 
     def create_user(self, email, password=None):
-        usuario = self.model(
+        basic_user = self.model(
             email =  self.normalize_email(email)
         )
 
-        usuario.is_active = True
-        usuario.is_staff = False
-        usuario.is_superuser = False 
+        basic_user.is_active = True
+        basic_user.is_staff = False
+        basic_user.is_superuser = False 
 
         if password:
-            usuario.set_password(password)
+            basic_user.set_password(password)
 
-        usuario.save()
+        basic_user.save()
 
-        return usuario
+        return basic_user
     
 
     def create_superuser(self, email, password):
-        usuario = self.create_user(
+        basic_user = self.create_user(
             email = self.normalize_email(email),
             password = password,
         )
 
-        usuario.is_active = True
-        usuario.is_staff = True
-        usuario.is_superuser = True 
+        basic_user.is_active = True
+        basic_user.is_staff = True
+        basic_user.is_superuser = True 
 
-        usuario.set_password(password)
-        usuario.save()
-        return usuario
+        basic_user.set_password(password)
+        basic_user.save()
+        return basic_user
     
 
 

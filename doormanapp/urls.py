@@ -3,7 +3,7 @@ from django.urls import path
 
 from basic_user.views import index
 from visitor.views import (
-    register_visitor, information_visitor
+    register_visitor, information_visitor, finalize_visit
 )
 
 
@@ -28,6 +28,14 @@ urlpatterns = [
         information_visitor,
         name="information_visitor",
 
+    ),
+
+    path(
+        "visitors/<int:id>/finalize-visit/",
+        finalize_visit,
+        name="finalize_visit",
     )
+
+
 ]
 

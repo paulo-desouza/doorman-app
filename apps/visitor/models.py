@@ -2,6 +2,20 @@ from django.db import models
 
 class Visitor(models.Model):
 
+    STATUS_VISITOR = [
+        ("AWAITING", "Awaiting Authorization"),
+        ("IN_VISIT", "In Visit"),
+        ("FINALIZED", "Visit has been finalized"),
+    ]
+
+    status = models.CharField(
+        verbose_name = "Status",
+        max_length = 10,
+        choices = STATUS_VISITOR,
+        default = "AWAITING"
+    )
+
+
     full_name = models.CharField(
         verbose_name = "Full Name",
         max_length = 194,
@@ -95,6 +109,19 @@ class Visitor(models.Model):
             return self.vehicle_plate
         
         return "Vehicle Plate not registered."
+    
+    def get_ssn(self):
+        if self.ssn:
+            ssn = str(self.ssn)
+
+        ssn_1 = ssn[0:3]
+        ssn_2 = ssn[3:5]
+        ssn_3 = ssn[5:]
+
+        ssn_formatted = f"{ssn_1}-{ssn_2}-{ssn_3}"
+
+        return ssn_formatted
+    
     
 
 

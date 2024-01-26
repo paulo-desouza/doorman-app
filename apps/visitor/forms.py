@@ -27,4 +27,20 @@ class VisitorForm(forms.ModelForm):
             },
         }
 
+class AuthorizeVisitorForm(forms.ModelForm):
+
+    responsible_tenant = forms.CharField(required=True)
+
+    class Meta:
+        model = Visitor
+
+        fields = [
+            "responsible_tenant"
+        ]
+
+        error_messages = {
+            'responsible_tenant' : {
+                "required": "Please, inform the name of the tenant responsible for authorizing this guest's entrance."
+            }
+        }
 

@@ -104,6 +104,7 @@
                         <th>Arrival Time</th>
                         <th>Authorization Time</th>
                         <th>Authorized By</th>
+                        <th>Status</th>
                         <th>More Information</th>
                     </thead>
 
@@ -113,10 +114,11 @@
 
                             <tr>
                                 <td>{{ visitor.full_name }}</td>
-                                <td>{{ visitor.ssn }}</td>
+                                <td>{{ visitor.get_ssn }}</td>
                                 <td>{{ visitor.arrival_time }}</td>
                                 <td>{{ visitor.get_authorization_time }}</td>
                                 <td>{{ visitor.get_responsible_tenant }}</td>
+                                <td>{{ visitor.get_status_display }}</td>
                                 <td>
                                     <a href="{% url 'information_visitor' id=visitor.id %}">
                                         More Information
