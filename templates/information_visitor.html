@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block conteudo %}
+<div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{ nome_pagina }}</h1>
+    </div>
+    
+    <div class="card shadow mb-4">        
+        <div class="card-body">
+            <h4 class="mb-3 text-primary">
+                General Information
+            </h4>
+        
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Arrival Time</label>
+                        <input type="text" class="form-control" value="{{ visitor.arrival_time }}" disabled>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>House number to be visited</label>
+                        <input type="text" class="form-control" value="{{ visitor.apartment_number }}" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Time of entry authorization</label>
+                        <input type="text" class="form-control" value="{{ visitor.get_authorization_time }}" disabled>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Entry authorized by</label>
+                        <input type="text" class="form-control" value="{{ visitor.get_responsible_tenant}}" disabled>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Checkout time</label>
+                        <input type="text" class="form-control" value="{{ visitor.get_checkout_time }}" disabled>
+                    </div>
+                </div>
+            </form>
+        
+            <h4 class="mb-3 mt-4 text-primary">
+                Personal information
+            </h4>
+            
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Full name</label>
+                        <input type="text" class="form-control" value="{{ visitor.full_name }}" disabled>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>SSN</label>
+                        <input type="text" class="form-control" value="{{ visitor.ssn }}" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Birth Date</label>
+                        <input type="text" class="form-control" value="{{ visitor.birth_date }}" disabled>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Vehicle Plate Number</label>
+                        <input type="text" class="form-control" value="{{ visitor.get_vehicle_plate }}" disabled>
+                    </div>
+                </div>
+            </form>
+                    
+            <p class="mr-2 mt-3 mb-4 text-right">
+                <small>
+                    Guest Registered in {{ visitor.arrival_time }} by {{ visitor.registered_by }}
+                </small>
+            </p>
+        
+            <div class="mr-1 text-right">
+                <a href="#" class="btn btn-secondary text-white" type="button">
+                    <span class="text">Go Back</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

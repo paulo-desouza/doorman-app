@@ -22,6 +22,11 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'basic_user.apps.BasicUserConfig',
     'doorman.apps.DoormanConfig',
+    'visitor.apps.VisitorConfig',
+]
+
+INSTALLED_APPS += [
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -39,7 +44,7 @@ ROOT_URLCONF = 'doormanapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

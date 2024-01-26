@@ -1,16 +1,16 @@
 from django.shortcuts import render
-#from visitantes.models import Visitante
+from visitor.models import Visitor
 
 
 def index(request):
 
-#    todos_visitantes = Visitante.objects.all()
+    all_visitors = Visitor.objects.all()
 
 
 
     context = {
-        "nome_pagina": "Inicio",
- #       "todos_visitantes": todos_visitantes,
+        "nome_pagina": "Home",
+        "all_visitors": all_visitors,
     }
 
     return render(request, "index.html", context)
