@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+
+{% block conteudo %}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{ nome_pagina }}</h1>
+
+        <a href="{% url 'register-visitor' %}" class="btn btn-primary btn-icon-split btn-sm">
+            <span class="text">Register Guest</span>
+            <span class="icon text-white-50">
+                <i class="fas fa-user-plus"></i>
+            </span>
+        </a>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Guests awaiting authorization</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ awaiting_visitors }}</div>
+                        </div>
+                        
+                        <div class="col-auto">
+                            <i class="fas fa-user-lock fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Guests in the Condominium</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ in_visit_visitors }}</div>
+                        </div>
+                        
+                        <div class="col-auto">
+                            <i class="fas fa-user-clock fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Finalized Visits</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ finalized_visitors }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user-check fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Registered guests in current month</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ monthly_visitors }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
+            <h6 class="m-0 font-weight-bold text-primary">Recent Guests</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Full name</th>
+                        <th>SSN</th>
+                        <th>Arrival Time</th>
+                        <th>Authorization Time</th>
+                        <th>Authorized By</th>
+                        <th>Status</th>
+                        <th>More Information</th>
+                    </thead>
+
+                    <tbody>
+
+                        {% for visitor in all_visitors %}
+
+                            <tr>
+                                <td>{{ visitor.full_name }}</td>
+                                <td>{{ visitor.get_ssn }}</td>
+                                <td>{{ visitor.arrival_time }}</td>
+                                <td>{{ visitor.get_authorization_time }}</td>
+                                <td>{{ visitor.get_responsible_tenant }}</td>
+                                <td>{{ visitor.get_status_display }}</td>
+                                <td>
+                                    <a href="{% url 'information_visitor' id=visitor.id %}">
+                                        More Information
+                                    </a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock conteudo %}
